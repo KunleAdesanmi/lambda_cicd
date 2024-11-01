@@ -9,7 +9,6 @@ Parameters:
       - Test
       - Staging
       - Production
-      - Environment
 
 Resources:
   MyS3Bucket:
@@ -19,10 +18,10 @@ Resources:
       Tags:
         - Key: Environment
           Value: !Ref Environment
-        - Key: Environment
+        - Key: Project
           Value: GithubActionsTest
 
 Outputs:
   BucketName:
-    Description: The name of created S3 Bucket
+    Description: The name of created S3 bucket
     Value: !Ref MyS3Bucket
