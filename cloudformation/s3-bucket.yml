@@ -9,6 +9,7 @@ Parameters:
       - Test
       - Staging
       - Production
+      - Environment
 
 Resources:
   MyS3Bucket:
