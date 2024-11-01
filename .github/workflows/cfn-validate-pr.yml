@@ -13,8 +13,7 @@ jobs:
   validate-cfn:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -33,7 +32,7 @@ jobs:
           aws cloudformation create-stack --stack-name $stack_name --template-body file://cloudformation/s3-bucket.yml --parameters ParameterKey=Environment,ParameterValue=test
 
       - name: Comment on the PR
-        uses: actions/github-script-action@v6
+        uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}} 
           script: |
@@ -42,7 +41,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: 'Cloudformation stack has been deployed. Stack name: pr-test-stack-${{github.event.pull_request.number}}'
-            })
+            });
         
   cleanup-on-merge:
     runs-on: ubuntu-latest
